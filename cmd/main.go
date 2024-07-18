@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Kudzeri/go-shoe-store-api/config"
+	"github.com/Kudzeri/go-shoe-store-api/routes"
 	"github.com/gin-gonic/gin"
 	"log"
 	"os"
