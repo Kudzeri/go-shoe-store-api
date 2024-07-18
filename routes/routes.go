@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRoutes() *gin.Engine {
+func SetupRouter() *gin.Engine {
 	router := gin.Default()
 
 	productRoutes := router.Group("/products")
