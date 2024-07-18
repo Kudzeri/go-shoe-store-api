@@ -1,26 +1,26 @@
 package services
 
 import (
-	"github.com/Kudzeri/go-shoe-store-api/controllers"
 	"github.com/Kudzeri/go-shoe-store-api/models"
+	"github.com/Kudzeri/go-shoe-store-api/repositories"
 )
 
 func GetAllProducts() ([]models.Product, error) {
-	return controllers.FindAllProducts()
+	return repositories.FindAllProducts()
 }
 
 func GetProductByID(id string) (models.Product, error) {
-	return controllers.FindProductByID(id)
+	return repositories.FindProductByID(id)
 }
 
 func CreateProduct(product *models.Product) error {
-	return controllers.CreateProduct(product)
+	return repositories.CreateProduct(product)
 }
 
 func UpdateProduct(id string, product *models.Product) error {
-	return controllers.UpdateProduct(id, product)
+	return repositories.UpdateProduct(id, product)
 }
 
 func DeleteProduct(id string) error {
-	return controllers.DeleteProduct(id)
+	return repositories.DeleteProduct(id)
 }
