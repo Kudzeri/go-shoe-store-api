@@ -18,7 +18,7 @@ func main() {
 
 	router := gin.Default()
 	config.ConnectDB()
-	routes.SetupRoutes(router)
+	router = routes.SetupRoutes()
 
 	router.Run(":" + port)
 }
