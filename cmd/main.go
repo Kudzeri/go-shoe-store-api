@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Kudzeri/go-shoe-store-api/config"
 	"github.com/Kudzeri/go-shoe-store-api/controllers"
+	"github.com/Kudzeri/go-shoe-store-api/db"
 	"github.com/Kudzeri/go-shoe-store-api/middleware"
 	"github.com/Kudzeri/go-shoe-store-api/routes"
 	"github.com/gin-gonic/gin"
@@ -12,6 +13,7 @@ import (
 
 func main() {
 	config.ConnectDB()
+	db.AutoMigrate()
 
 	router := routes.SetupRouter()
 	router.Static("/swagger", "./swagger-ui")
