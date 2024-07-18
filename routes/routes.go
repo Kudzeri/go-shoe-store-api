@@ -2,6 +2,7 @@ package routes
 
 import (
 	"github.com/Kudzeri/go-shoe-store-api/controllers"
+	"github.com/Kudzeri/go-shoe-store-api/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,10 +30,12 @@ func SetupRouter() *gin.Engine {
 	userRoutes := router.Group("/users")
 	{
 		userRoutes.POST("/register", controllers.RegisterUser)
+		userRoutes.POST("/login", controllers.Login)
 		userRoutes.GET("/:id", controllers.GetUser)
 		userRoutes.PUT("/:id", controllers.UpdateUser)
 		userRoutes.DELETE("/:id", controllers.DeleteUser)
 	}
 
+	router.Use(middleware.JWTAuthMiddleware())
 	return router
 }

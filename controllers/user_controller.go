@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/Kudzeri/go-shoe-store-api/models"
 	"github.com/Kudzeri/go-shoe-store-api/services"
+	"github.com/Kudzeri/go-shoe-store-api/utils"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -18,6 +19,31 @@ func RegisterUser(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusCreated, user)
+}
+
+func Login(c *gin.Context) {
+	var creds struct {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+
+	if err := c.ShouldBindJSON(&creds); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+		return
+	}
+
+	if creds.Username != "example_user" || creds.Password != "password" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
+		return
+	}
+
+	token, err := utils.GenerateJWT(creds.Username)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"token": token})
 }
 
 func GetUser(c *gin.Context) {
