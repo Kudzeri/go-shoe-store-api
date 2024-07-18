@@ -11,6 +11,8 @@ func main() {
 	config.ConnectDB()
 
 	router := routes.SetupRouter()
+	router.Static("/swagger", "../swagger-ui")
+	router.StaticFile("/docs/swagger.yaml", "../docs/swagger.yaml")
 
 	port := os.Getenv("PORT")
 	if port == "" {
